@@ -1,0 +1,30 @@
+{
+  "_help": "Everything on the profile comes from this file. Edit it, then run: python scripts/build.py --photo <your-photo>",
+
+  "github_username": "GubreleySanskar",
+  "handle": "sanskar",
+  "name": "Sanskar Gubreley",
+  "tagline": "Software Engineer · Tech Content Creator",
+
+  "now": { "role": "Software Engineer", "where": "@ Salesforce" },
+  "creating": "Tech, AI & career content for students",
+  "stack": ["Java", "JavaScript", "TypeScript", "React", "Node.js", "Python", "SQL", "Salesforce"],
+  "highlights": [
+    "Building enterprise software at Salesforce",
+    "Teaching software engineering & AI online",
+    "Helping students land their first dev role"
+  ],
+
+  "headline": "Software Engineer @ Salesforce · Tech & AI Content Creator",
+  "links": {
+    "email": "gubreley789@gmail.com",
+    "instagram": "",
+    "linkedin": "",
+    "x": "",
+    "youtube": "",
+    "website": ""
+  },
+
+  "heatmap": { "total": 1247, "seed": 29, "end_date": "2026-10-10" },
+  "portrait": { "crop": "" }
+}

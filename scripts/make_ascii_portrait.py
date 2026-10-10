@@ -36,9 +36,15 @@ FONT = CHAR_W * 1.66
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace"
 
 
+def _cfg():
+    sys.path.insert(0, os.path.dirname(__file__))
+    from config import load
+    return load()
+
+
 def prep(path):
     img = Image.open(path).convert("RGB")
-    crop = os.environ.get("CROP")
+    crop = os.environ.get("CROP") or _cfg()["portrait"].get("crop", "")
     if crop:
         img = img.crop(tuple(int(v) for v in crop.split(",")))
     try:
@@ -94,7 +100,10 @@ def to_ascii(gray, alpha):
     return lines
 
 
-def svg(lines, name="Sanskar Gubreley", user="sanskar"):
+def svg(lines, name=None, user=None):
+    if name is None or user is None:
+        cfg = _cfg()
+        name, user = name or cfg["name"], user or cfg["handle"]
     global TOP
     H = round(TOP + len(lines) * LINE_H + BOTTOM)
     min_h = int(os.environ.get("MIN_H", "0"))       # match the info card: centre the art vertically
@@ -117,7 +126,7 @@ def svg(lines, name="Sanskar Gubreley", user="sanskar"):
     for k, col in enumerate(("#ff5f56", "#ffbd2e", "#27c93f")):
         o.append(f'<circle cx="{18 + k * 16}" cy="14.5" r="5" fill="{col}"/>')
     o.append(f'<text x="{W / 2}" y="18.5" text-anchor="middle" font-family="{MONO}" font-size="11" '
-             f'fill="#7d8590">{user}@github: ~$ ./portrait.sh</text>')
+             f'fill="#7d8590">{escape(user)}@github: ~$ ./portrait.sh</text>')
 
     o.append(f'<g font-family="{MONO}" font-size="{FONT:.2f}" fill="{INK}">')
     for i, line in enumerate(lines):
@@ -149,7 +158,7 @@ def svg(lines, name="Sanskar Gubreley", user="sanskar"):
     fs, cw = 12, 12 * 0.602
     prompt = f"{user}@github:~$ whoami "
     o.append(f'<text x="{PAD_X}" y="{fy}" font-family="{MONO}" font-size="{fs}" fill="#7d8590" '
-             f'textLength="{len(prompt.rstrip()) * cw:.1f}" lengthAdjust="spacingAndGlyphs">{prompt.rstrip()}</text>')
+             f'textLength="{len(prompt.rstrip()) * cw:.1f}" lengthAdjust="spacingAndGlyphs">{escape(prompt.rstrip())}</text>')
     nx = PAD_X + len(prompt) * cw
     o.append(f'<clipPath id="nm"><rect x="{nx:.1f}" y="{fy - 12}" height="16" width="{len(name) * cw if STATIC else 0}">'
              + ("" if STATIC else f'<animate attributeName="width" calcMode="discrete" begin="{end:.2f}s" '

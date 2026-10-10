@@ -21,10 +21,10 @@
 <text class="l" x="36" y="54.7" text-anchor="end">Mon</text>
 <text class="l" x="36" y="85.1" text-anchor="end">Wed</text>
 <text class="l" x="36" y="115.5" text-anchor="end">Fri</text>
-<rect class="c" style="animation-delay:0.15s" x="44.0" y="30.0" width="12" height="12" rx="2.5" fill="#26a641"><title>6 on Oct 05</title></rect>
-<rect class="c" style="animation-delay:0.18s" x="44.0" y="45.2" width="12" height="12" rx="2.5" fill="#006d32"><title>4 on Oct 06</title></rect>
+<rect class="c" style="animation-delay:0.15s" x="44.0" y="30.0" width="12" height="12" rx="2.5" fill="#26a641"><title>5 on Oct 05</title></rect>
+<rect class="c" style="animation-delay:0.18s" x="44.0" y="45.2" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Oct 06</title></rect>
 <rect class="c" style="animation-delay:0.22s" x="44.0" y="60.4" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Oct 07</title></rect>
-<rect class="c" style="animation-delay:0.26s" x="44.0" y="75.6" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Oct 08</title></rect>
+<rect class="c" style="animation-delay:0.26s" x="44.0" y="75.6" width="12" height="12" rx="2.5" fill="#006d32"><title>2 on Oct 08</title></rect>
 <rect class="c" style="animation-delay:0.29s" x="44.0" y="90.8" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Oct 09</title></rect>
 <rect class="c" style="animation-delay:0.33s" x="44.0" y="106.0" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Oct 10</title></rect>
 <rect class="c" style="animation-delay:0.36s" x="44.0" y="121.2" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Oct 11</title></rect>
@@ -82,7 +82,7 @@
 <rect class="c" style="animation-delay:0.40s" x="165.6" y="60.4" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Dec 02</title></rect>
 <rect class="c" style="animation-delay:0.43s" x="165.6" y="75.6" width="12" height="12" rx="2.5" fill="#006d32"><title>4 on Dec 03</title></rect>
 <rect class="c" style="animation-delay:0.47s" x="165.6" y="90.8" width="12" height="12" rx="2.5" fill="#39d353"><title>8 on Dec 04</title></rect>
-<rect class="c hot" style="animation-delay:0.50s" x="165.6" y="106.0" width="12" height="12" rx="2.5" fill="#7cffcb"><title>26 on Dec 05</title></rect>
+<rect class="c hot" style="animation-delay:0.50s" x="165.6" y="106.0" width="12" height="12" rx="2.5" fill="#7cffcb"><title>27 on Dec 05</title></rect>
 <rect class="c hot" style="animation-delay:0.54s" x="165.6" y="121.2" width="12" height="12" rx="2.5" fill="#7cffcb"><title>15 on Dec 06</title></rect>
 <rect class="c" style="animation-delay:0.35s" x="180.8" y="30.0" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Dec 07</title></rect>
 <rect class="c" style="animation-delay:0.38s" x="180.8" y="45.2" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Dec 08</title></rect>
@@ -278,7 +278,7 @@
 <rect class="c" style="animation-delay:1.01s" x="591.2" y="60.4" width="12" height="12" rx="2.5" fill="#006d32"><title>4 on Jun 16</title></rect>
 <rect class="c" style="animation-delay:1.05s" x="591.2" y="75.6" width="12" height="12" rx="2.5" fill="#006d32"><title>2 on Jun 17</title></rect>
 <rect class="c" style="animation-delay:1.08s" x="591.2" y="90.8" width="12" height="12" rx="2.5" fill="#26a641"><title>5 on Jun 18</title></rect>
-<rect class="c hot" style="animation-delay:1.12s" x="591.2" y="106.0" width="12" height="12" rx="2.5" fill="#7cffcb"><title>20 on Jun 19</title></rect>
+<rect class="c hot" style="animation-delay:1.12s" x="591.2" y="106.0" width="12" height="12" rx="2.5" fill="#7cffcb"><title>21 on Jun 19</title></rect>
 <rect class="c" style="animation-delay:1.15s" x="591.2" y="121.2" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Jun 20</title></rect>
 <rect class="c" style="animation-delay:0.96s" x="606.4" y="30.0" width="12" height="12" rx="2.5" fill="#39d353"><title>8 on Jun 21</title></rect>
 <rect class="c" style="animation-delay:1.00s" x="606.4" y="45.2" width="12" height="12" rx="2.5" fill="#26a641"><title>5 on Jun 22</title></rect>
@@ -297,7 +297,7 @@
 <rect class="c" style="animation-delay:1.01s" x="636.8" y="30.0" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Jul 05</title></rect>
 <rect class="c" style="animation-delay:1.04s" x="636.8" y="45.2" width="12" height="12" rx="2.5" fill="#006d32"><title>4 on Jul 06</title></rect>
 <rect class="c" style="animation-delay:1.08s" x="636.8" y="60.4" width="12" height="12" rx="2.5" fill="#26a641"><title>5 on Jul 07</title></rect>
-<rect class="c hot" style="animation-delay:1.11s" x="636.8" y="75.6" width="12" height="12" rx="2.5" fill="#7cffcb"><title>39 on Jul 08</title></rect>
+<rect class="c hot" style="animation-delay:1.11s" x="636.8" y="75.6" width="12" height="12" rx="2.5" fill="#7cffcb"><title>40 on Jul 08</title></rect>
 <rect class="c" style="animation-delay:1.15s" x="636.8" y="90.8" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Jul 09</title></rect>
 <rect class="c" style="animation-delay:1.18s" x="636.8" y="106.0" width="12" height="12" rx="2.5" fill="#006d32"><title>3 on Jul 10</title></rect>
 <rect class="c" style="animation-delay:1.22s" x="636.8" y="121.2" width="12" height="12" rx="2.5" fill="#161b22"><title>0 on Jul 11</title></rect>
@@ -393,7 +393,7 @@
 <rect class="c" style="animation-delay:1.47s" x="834.4" y="106.0" width="12" height="12" rx="2.5" fill="#006d32"><title>4 on Oct 09</title></rect>
 <rect class="c" style="animation-delay:1.50s" x="834.4" y="121.2" width="12" height="12" rx="2.5" fill="#26a641"><title>5 on Oct 10</title></rect>
 <text x="44" y="158.39999999999998" font-size="14" font-weight="700" fill="#e6edf3">1,247 contributions<tspan fill="#7d8590" font-weight="500"> in the last year</tspan></text>
-<text x="44" y="178.39999999999998" font-size="12" fill="#7d8590">Longest streak <tspan fill="#7cffcb" font-weight="700">46 days</tspan>   ·   Current streak <tspan fill="#7cffcb" font-weight="700">21 days</tspan>   ·   Best day <tspan fill="#7cffcb" font-weight="700">39</tspan></text>
+<text x="44" y="178.39999999999998" font-size="12" fill="#7d8590">Longest streak <tspan fill="#7cffcb" font-weight="700">46 days</tspan>   ·   Current streak <tspan fill="#7cffcb" font-weight="700">21 days</tspan>   ·   Best day <tspan fill="#7cffcb" font-weight="700">40</tspan></text>
 <text class="l" x="708" y="158.39999999999998" text-anchor="end">Less</text>
 <rect x="714" y="148.39999999999998" width="12" height="12" rx="2.5" fill="#161b22"/>
 <rect x="729" y="148.39999999999998" width="12" height="12" rx="2.5" fill="#0e4429"/>

@@ -16,21 +16,23 @@ STATIC = os.environ.get("STATIC") == "1"
 SANS = "-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace"
 
-NAME = "Sanskar Gubreley"
-TAGLINE = "Software Engineer · Tech Content Creator"
-NOW = ("Software Engineer", "@ Salesforce")
-CREATING = "Tech, AI & career content for students"
-STACK = ["Java", "JavaScript", "TypeScript", "React", "Node.js", "Python", "SQL", "Salesforce"]
-HIGHLIGHTS = [
-    "Building enterprise software at Salesforce",
-    "Teaching software engineering & AI online",
-    "Helping students land their first dev role",
-]
+import sys
+sys.path.insert(0, os.path.dirname(__file__))
+from config import load  # noqa: E402
+
+CFG = load()
+NAME = CFG["name"]
+TAGLINE = CFG["tagline"]
+NOW = (CFG["now"]["role"], CFG["now"]["where"])
+CREATING = CFG["creating"]
+STACK = CFG["stack"]
+HIGHLIGHTS = CFG["highlights"]
+HANDLE = CFG["handle"]
 W = 490
 
 
 def stats():
-    st = json.load(open(os.path.join(ROOT, "data", "contributions.json")))["stats"]
+    st = json.load(open(os.environ.get("CONTRIB_JSON") or os.path.join(ROOT, "data", "contributions.json")))["stats"]
     return [(f'{st["total"]:,}', "contributions"), (f'{st["longest_streak"]}d', "longest streak"),
             (f'{st["current_streak"]}d', "current streak"), (str(st["active_days"]), "active days")]
 
@@ -52,7 +54,7 @@ def card(H):
     for k, col in enumerate(("#ff5f56", "#ffbd2e", "#27c93f")):
         o.append(f'<circle cx="{18 + k * 16}" cy="14.5" r="5" fill="{col}"/>')
     o.append(f'<text x="{W / 2}" y="18.5" text-anchor="middle" font-family="{MONO}" font-size="11" fill="#7d8590">'
-             f'sanskar@github: ~$ cat about.md</text>')
+             f'{escape(HANDLE)}@github: ~$ cat about.md</text>')
 
     n = [0]
 
@@ -73,7 +75,7 @@ def card(H):
                f'<text class="k" x="{X + 10}" y="{yy}">{t}</text>'
 
     y += 30
-    o.append(block(label("NOW", y) + f'<text class="v" x="{X}" y="{y + 21}"><tspan font-weight="700">{NOW[0]}</tspan>'
+    o.append(block(label("NOW", y) + f'<text class="v" x="{X}" y="{y + 21}"><tspan font-weight="700">{escape(NOW[0])}</tspan>'
                    f'<tspan fill="#7cffcb" font-weight="600"> {escape(NOW[1])}</tspan></text>'))
     y += 48
     o.append(block(label("CREATING", y) + f'<text class="v" x="{X}" y="{y + 21}">{escape(CREATING)}</text>'))

@@ -3,7 +3,7 @@ Static, animated contribution heatmap -> assets/contrib-heatmap.svg
 (+ data/contributions.json, which the info card reads so its stats match).
 
   python scripts/make_heatmap.py            # STATIC=1 for a frozen frame
-Edit TOTAL / SEED / END below to change the numbers or the pattern.
+Numbers come from profile.json -> heatmap.
 """
 import datetime as dt
 import json
@@ -13,9 +13,14 @@ import random
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 STATIC = os.environ.get("STATIC") == "1"
 
-TOTAL = 1247                       # contributions shown for the year
-SEED = 29                          # change for a different pattern
-END = dt.date(2026, 10, 10)        # last day on the graph
+import sys
+sys.path.insert(0, os.path.dirname(__file__))
+from config import load  # noqa: E402
+
+_CFG = load()["heatmap"]
+TOTAL = int(_CFG["total"])         # contributions shown for the year (profile.json -> heatmap.total)
+SEED = int(_CFG["seed"])           # change for a different pattern
+END = _CFG["end"]                  # last day on the graph (profile.json -> heatmap.end_date, blank = today)
 LEVELS = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353", "#7cffcb"]  # neon top end
 FONT = "-apple-system,'Segoe UI',Helvetica,Arial,sans-serif"
 
@@ -37,11 +42,22 @@ def make_data():
     s = sum(w for _, w in days)
     counts = [round(w / s * TOTAL) if w else 0 for _, w in days]
     counts = [max(1, c) if w else 0 for c, (_, w) in zip(counts, days)]
-    diff = TOTAL - sum(counts)                                        # spread rounding over active days
-    active = [i for i, c in enumerate(counts) if c]
-    for k in range(abs(diff)):
-        i = active[k % len(active)]
-        counts[i] += 1 if diff > 0 else (-1 if counts[i] > 1 else 0)
+    # land exactly on TOTAL: add to the busiest days, or trim them (never below 1);
+    # if every active day is already 1, switch off the quietest days instead
+    while sum(counts) != TOTAL:
+        diff = TOTAL - sum(counts)
+        order = sorted((i for i, c in enumerate(counts) if c), key=lambda i: -counts[i])
+        if diff > 0:
+            for i in order[:diff]:
+                counts[i] += 1
+        else:
+            big = [i for i in order if counts[i] > 1][:-diff]
+            if big:
+                for i in big:
+                    counts[i] -= 1
+            else:
+                for i in sorted(order, key=lambda i: days[i][1])[:-diff]:
+                    counts[i] = 0
     return [(d, c) for (d, _), c in zip(days, counts)]
 
 
