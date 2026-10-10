@@ -19,10 +19,11 @@ import cv2
 import numpy as np
 from PIL import Image
 
-COLS = int(os.environ.get("COLS", "110"))
+COLS = int(os.environ.get("COLS", "150"))
 EDGE = float(os.environ.get("EDGE", "0.75"))
 DETAIL = float(os.environ.get("DETAIL", "1.4"))  # unsharp-mask strength for small features
-GAMMA = float(os.environ.get("GAMMA", "1.3"))   # >1 keeps skin and mid-tones open, darks stay dense
+GAMMA = float(os.environ.get("GAMMA", "1.3"))
+FLOOR = float(os.environ.get("FLOOR", "0.1"))   # minimum density inside the person, so light skin still shows its shape   # >1 keeps skin and mid-tones open, darks stay dense
 STATIC = os.environ.get("STATIC") == "1"
 RAMP = " .'`:-~=+*cs%#@"          # open -> dense ; dark pixels get dense glyphs
 INK = "#d0d7de"                    # one soft monochrome ink (colour per glyph looks like static)
@@ -46,6 +47,11 @@ def prep(path):
     except Exception as e:
         print("rembg unavailable, keeping background:", e)
         rgba = np.array(img.convert("RGBA"))
+    # trim only empty background around the person (the person is never cut)
+    ys, xs = np.where(rgba[:, :, 3] > 20)
+    if len(xs):
+        m = int(0.02 * max(rgba.shape[:2]))
+        rgba = rgba[max(0, ys.min() - m):ys.max() + m + 1, max(0, xs.min() - m):xs.max() + m + 1]
     alpha = rgba[:, :, 3].astype(np.float32) / 255.0
     gray = cv2.cvtColor(rgba[:, :, :3], cv2.COLOR_RGB2GRAY)
 
@@ -78,7 +84,7 @@ def to_ascii(gray, alpha):
     for r in range(rows):
         row = ""
         for c in range(COLS):
-            d = (1 - small[r, c]) ** GAMMA if a[r, c] > 0.2 else 0     # darkness -> density
+            d = max(FLOOR, (1 - small[r, c]) ** GAMMA) if a[r, c] > 0.35 else 0   # darkness -> density; skin keeps a faint texture
             row += RAMP[min(len(RAMP) - 1, int(d * len(RAMP)))]
         lines.append(row.rstrip())
     while lines and not lines[0].strip():
@@ -89,7 +95,12 @@ def to_ascii(gray, alpha):
 
 
 def svg(lines, name="Sanskar Gubreley", user="sanskar"):
+    global TOP
     H = round(TOP + len(lines) * LINE_H + BOTTOM)
+    min_h = int(os.environ.get("MIN_H", "0"))       # match the info card: centre the art vertically
+    if H < min_h:
+        TOP += (min_h - H) / 2
+        H = min_h
     step, dur, start = 0.045, 0.5, 0.35
     o = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">', '<defs>']
     for i in range(len(lines)):
@@ -159,4 +170,4 @@ if __name__ == "__main__":
     src, dst = sys.argv[1], sys.argv[2]
     lines = to_ascii(*prep(src))
     open(dst, "w").write(svg(lines))
-    print(f"wrote {dst}: {len(lines)} rows x {COLS} cols, height {round(TOP + len(lines) * LINE_H + BOTTOM)}")
+    print(f"wrote {dst}: {len(lines)} rows x {COLS} cols")
