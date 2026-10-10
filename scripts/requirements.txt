@@ -3,4 +3,3 @@ numpy
 pillow
 rembg
 onnxruntime
-pyfiglet
